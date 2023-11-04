@@ -50,6 +50,7 @@ class DropdownTreeSelect extends Component {
     inlineSearchInput: PropTypes.bool,
     tabIndex: PropTypes.number,
     disablePoppingOnBackspace: PropTypes.bool,
+    selectChildrenOnly: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -73,13 +74,14 @@ class DropdownTreeSelect extends Component {
     this.clientId = props.id || clientIdGenerator.get(this)
   }
 
-  initNewProps = ({ data, mode, showDropdown, showPartiallySelected, searchPredicate }) => {
+  initNewProps = ({ data, mode, showDropdown, showPartiallySelected, searchPredicate, selectChildrenOnly }) => {
     this.treeManager = new TreeManager({
       data,
       mode,
       showPartiallySelected,
       rootPrefixId: this.clientId,
       searchPredicate,
+      selectChildrenOnly,
     })
     this.setState(prevState => {
       const currentFocusNode = prevState.currentFocus && this.treeManager.getNodeById(prevState.currentFocus)
@@ -364,6 +366,7 @@ class DropdownTreeSelect extends Component {
                   onNodeToggle={this.onNodeToggle}
                   mode={mode}
                   showPartiallySelected={this.props.showPartiallySelected}
+                  selectChildrenOnly={this.props.selectChildrenOnly}
                   {...commonProps}
                 />
               )}

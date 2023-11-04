@@ -84,6 +84,10 @@ declare module 'react-dropdown-tree-select' {
      * Simply add desired styles to .node.partial .checkbox-item:indeterminate { ... } in your CSS
      */
     showPartiallySelected?: boolean
+    /** If set to true, only children will be selectable in radio-select mode.
+     *
+     */
+    selectChildrenOnly?: boolean
     /** disabled=true disables the dropdown completely. This is useful during form submit events */
     disabled?: boolean
     /** readOnly=true makes the dropdown read only,

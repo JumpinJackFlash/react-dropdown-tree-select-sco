@@ -22,6 +22,7 @@ const getNodeCx = props => {
     hide,
     className,
     showPartiallySelected,
+    selectChildrenOnly,
     readOnly,
     checked,
     _focused: focused,
@@ -68,6 +69,7 @@ class TreeNode extends PureComponent {
     onCheckboxChange: PropTypes.func,
     mode: PropTypes.oneOf(['multiSelect', 'simpleSelect', 'radioSelect', 'hierarchical']),
     showPartiallySelected: PropTypes.bool,
+    selectChildrenOnly: PropTypes.bool,
     readOnly: PropTypes.bool,
     clientId: PropTypes.string,
   }
@@ -108,6 +110,7 @@ class TreeNode extends PureComponent {
       onNodeToggle,
       onCheckboxChange,
       showPartiallySelected,
+      selectChildrenOnly,
       readOnly,
       clientId,
     } = this.props
@@ -130,8 +133,10 @@ class TreeNode extends PureComponent {
           mode={mode}
           onCheckboxChange={onCheckboxChange}
           showPartiallySelected={showPartiallySelected}
+          selectChildrenOnly={selectChildrenOnly}
           readOnly={readOnly}
           clientId={clientId}
+          isLeaf={isLeaf(_children)}
         />
         <Actions actions={actions} onAction={onAction} id={_id} readOnly={readOnly} />
       </li>

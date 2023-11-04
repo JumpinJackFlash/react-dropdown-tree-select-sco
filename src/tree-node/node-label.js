@@ -16,9 +16,11 @@ class NodeLabel extends PureComponent {
     dataset: PropTypes.object,
     mode: PropTypes.oneOf(['multiSelect', 'simpleSelect', 'radioSelect', 'hierarchical']),
     showPartiallySelected: PropTypes.bool,
+    selectChildrenOnly: PropTypes.bool,
     onCheckboxChange: PropTypes.func,
     readOnly: PropTypes.bool,
     clientId: PropTypes.string,
+    isLeaf: PropTypes.bool,
   }
 
   handleCheckboxChange = e => {
@@ -38,7 +40,7 @@ class NodeLabel extends PureComponent {
 
   render() {
     const { mode, title, label, id, partial, checked } = this.props
-    const { value, disabled, showPartiallySelected, readOnly, clientId } = this.props
+    const { value, disabled, showPartiallySelected, readOnly, clientId, selectChildrenOnly, isLeaf } = this.props
     const nodeLabelProps = { className: 'node-label' }
 
     // in case of simple select mode, there is no checkbox, so we need to handle the click via the node label
@@ -54,7 +56,7 @@ class NodeLabel extends PureComponent {
 
     return (
       <label title={title || label} htmlFor={id}>
-        {mode === 'radioSelect' ? (
+        {mode === 'radioSelect' && !isLeaf && selectChildrenOnly ? null : mode === 'radioSelect' ? (
           <RadioButton name={clientId} className="radio-item" onChange={this.handleCheckboxChange} {...sharedProps} />
         ) : (
           <Checkbox
