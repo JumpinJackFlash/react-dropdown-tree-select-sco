@@ -66,7 +66,7 @@ class DropdownTreeSelect extends Component {
   }
 
   constructor(props) {
-    super(props)
+    super()
     this.state = {
       searchModeOn: false,
       currentFocus: undefined,
@@ -74,14 +74,13 @@ class DropdownTreeSelect extends Component {
     this.clientId = props.id || clientIdGenerator.get(this)
   }
 
-  initNewProps = ({ data, mode, showDropdown, showPartiallySelected, searchPredicate, selectChildrenOnly }) => {
+  initNewProps = ({ data, mode, showDropdown, showPartiallySelected, searchPredicate }) => {
     this.treeManager = new TreeManager({
       data,
       mode,
       showPartiallySelected,
       rootPrefixId: this.clientId,
       searchPredicate,
-      selectChildrenOnly,
     })
     this.setState(prevState => {
       const currentFocusNode = prevState.currentFocus && this.treeManager.getNodeById(prevState.currentFocus)
@@ -108,9 +107,12 @@ class DropdownTreeSelect extends Component {
     }
   }
 
-  UNSAFE_componentWillMount() {
+  componentDidMount() {
     this.initNewProps(this.props)
   }
+  /*  UNSAFE_componentWillMount() {
+    this.initNewProps(this.props)
+  } */
 
   componentWillUnmount() {
     document.removeEventListener('click', this.handleOutsideClick, false)
