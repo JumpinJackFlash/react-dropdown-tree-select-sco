@@ -26,7 +26,7 @@
 
 A lightweight and fast control to render a select component that can display hierarchical tree data. In addition, the control shows the selection in pills and allows user to search the options for quick filtering and selection. Also supports displaying partially selected nodes.
 
-Forked to enable selectChildrenOnly flag which works in radio-select mode.
+Forked to enable selectChildrenOnly flag which works in radio-select mode. Also fixed one of the UNSAFE warnings.
 
 ## Table of Contents
 
