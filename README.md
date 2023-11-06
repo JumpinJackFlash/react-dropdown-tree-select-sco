@@ -22,9 +22,11 @@
 [all-contributors-url]: https://img.shields.io/badge/all_contributors-26-orange.svg?style=flat-square
 [types-url]: https://img.shields.io/npm/types/react-dropdown-tree-select.svg?style=flat-square
 
-## React Dropdown Tree Select
+## React Dropdown Tree Select - selectChildrenOnly
 
 A lightweight and fast control to render a select component that can display hierarchical tree data. In addition, the control shows the selection in pills and allows user to search the options for quick filtering and selection. Also supports displaying partially selected nodes.
+
+Forked to enable selectChildrenOnly flag which works in radio-select mode.
 
 ## Table of Contents
 
@@ -360,6 +362,12 @@ Turns the dropdown into radio select dropdown.
 Like `simpleSelect`, you can only select one value; but keeps the tree/children structure.
 
 ⚠️ If multiple nodes in data are selected - by setting either `checked` or `isDefaultValue`, only the first visited node stays selected.
+
+### selectChildrenOnly
+
+Type: `bool` (default: `false`)
+
+If set to true when running in mode=radio-select, only children will be selectable.
 
 ### showPartiallySelected
 
